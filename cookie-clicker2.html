@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Cookie Clicker 2 - The ultimate cookie production simulator with enhanced features, advanced automation, and endless possibilities. Experience the next evolution of the iconic idle game!">
+    <title>Cookie Clicker 2 - Ultimate Cookie Production Simulator | Play Now</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-color: #2C1810;
+            --bg-color: #FFF8DC;
+            --card-bg: #FFFFFF;
+            --hover-color: #A0522D;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+            animation: floatCookies 20s linear infinite;
+        }
+
+        @keyframes floatCookies {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .game-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 600px;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            margin: 1rem 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .game-frame.loaded {
+            opacity: 1;
+        }
+
+        .loading-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--bg-color);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        .loading-text {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .features-section {
+            padding: 3rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .strategy-section {
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+            padding: 3rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin-top: 3rem;
+            border-radius: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-frame {
+                height: 500px;
+            }
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: var(--card-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--card-bg);
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            footer .container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Breadcrumb Styles */
+        .breadcrumb {
+            background: var(--bg-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .breadcrumb .container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--hover-color);
+        }
+
+        .breadcrumb span {
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-color);
+            opacity: 0.4;
+            margin: 0 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .breadcrumb {
+                padding: 0.75rem 0;
+            }
+            
+            .breadcrumb a, .breadcrumb span {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="games.html">Games</a>
+            <span class="breadcrumb-separator">›</span>
+            <span>Cookie Clicker 2</span>
+        </div>
+    </div>
+
+    <main class="container">
+        <div id="game" class="game-container">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Loading Cookie Clicker 2...</p>
+            </div>
+            <iframe data-src="https://cookieclickergame.io/cookie-clicker.embed" class="game-frame" title="Cookie Clicker 2 Game"></iframe>
+        </div>
+
+        <header>
+            <div class="container">
+                <h1>Cookie Clicker 2: The Ultimate Cookie Empire Simulator</h1>
+                <p>Embark on an epic journey of cookie production and automation</p>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">1M+</div>
+                <p>Daily Players</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <p>Unique Upgrades</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <p>Achievements</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <p>Possible Cookies</p>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>What's New in Cookie Clicker 2?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Enhanced Automation</h3>
+                    <p>Experience the next level of cookie production with advanced automation features. From smart cursors to AI-powered bakeries, Cookie Clicker 2 introduces revolutionary ways to optimize your cookie empire.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Strategic Depth</h3>
+                    <p>Dive into complex production chains and strategic decisions. Balance your resources, time your upgrades, and maximize your Cookie Per Second (CPS) with new mechanics and features.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Achievement System</h3>
+                    <p>Unlock hundreds of new achievements and milestones. Each achievement not only celebrates your progress but also provides unique bonuses to boost your cookie production.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="strategy-section">
+            <h2>Master Cookie Clicker 2: Advanced Strategies</h2>
+            <p>Success in Cookie Clicker 2 requires more than just clicking. Here are some advanced strategies to maximize your cookie production:</p>
+            <ul>
+                <li>Focus on early automation to establish a strong foundation</li>
+                <li>Strategically time your Golden Cookie clicks for maximum benefits</li>
+                <li>Invest in research facilities to unlock powerful upgrades</li>
+                <li>Balance your building purchases to optimize CPS growth</li>
+                <li>Participate in special events for unique rewards</li>
+            </ul>
+            <p>Remember, the key to mastering Cookie Clicker 2 lies in understanding the synergies between different upgrades and timing your investments wisely.</p>
+        </section>
+
+        <section>
+            <h2>Building Your Cookie Empire</h2>
+            <p>Cookie Clicker 2 introduces new ways to expand your cookie production empire. Start with humble beginnings, clicking cookies manually, and gradually build up to a massive automated cookie-producing machine. Each upgrade and building you purchase contributes to your overall Cookie Per Second (CPS) rate.</p>
+            
+            <h3>Production Buildings</h3>
+            <p>From basic Cursors to advanced Quantum Processors, each building type serves a unique role in your cookie production chain. Strategic placement and timing of building purchases can significantly impact your growth rate.</p>
+
+            <h3>Research and Development</h3>
+            <p>Invest in research facilities to unlock groundbreaking cookie technologies. These upgrades can multiply your production rates exponentially and unlock new gameplay mechanics.</p>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Build Your Cookie Empire?</h2>
+            <p>Join millions of players worldwide in Cookie Clicker 2</p>
+            <a href="#game" class="cta-button" onclick="scrollToGame(event)">Start Clicking Now!</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cookie Clicker 2. All rights reserved.</p>
+            <div class="links">
+                <a href="home.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <a href="terms.html">Terms</a>
+                <a href="games.html">games</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lazy load the iframe
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.querySelector('.game-frame');
+            const loadingContainer = document.querySelector('.loading-container');
+            
+            // Function to load the iframe
+            function loadGame() {
+                const src = iframe.getAttribute('data-src');
+                iframe.setAttribute('src', src);
+                
+                iframe.onload = function() {
+                    iframe.classList.add('loaded');
+                    loadingContainer.style.display = 'none';
+                };
+            }
+
+            // Load game when it's in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadGame();
+                        observer.disconnect();
+                    }
+                });
+            });
+
+            observer.observe(iframe);
+        });
+
+        // Smooth scroll to game function
+        function scrollToGame(e) {
+            e.preventDefault();
+            const gameSection = document.getElementById('game');
+            gameSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Load the game if not already loaded
+            const iframe = document.querySelector('.game-frame');
+            if (!iframe.src) {
+                const src = iframe.getAttribute('data-src');
+                iframe.setAttribute('src', src);
+                
+                const loadingContainer = document.querySelector('.loading-container');
+                iframe.onload = function() {
+                    iframe.classList.add('loaded');
+                    loadingContainer.style.display = 'none';
+                };
+            }
+        }
+    </script>
+</body>
+</html> 
