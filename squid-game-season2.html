@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Squid Game Season 2 - Experience the next chapter of the survival game phenomenon. Master new challenges, compete in intense competitions, and become the ultimate survivor in this thrilling gaming experience.">
+    <title>Squid Game Season 2 - Ultimate Survival Game Experience | Play Online</title>
+    <style>
+        :root {
+            --primary-color: #FF0F7B;
+            --secondary-color: #45108A;
+            --accent-color: #06D6A0;
+            --text-color: #1A1A1A;
+            --bg-color: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --hover-color: #D10D65;
+            --dark-purple: #2D0F45;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)),
+                url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="10" fill="%23FF0F7B" opacity="0.1"/></svg>');
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: var(--card-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Breadcrumb Styles */
+        .breadcrumb {
+            background: var(--bg-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .breadcrumb .container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--hover-color);
+        }
+
+        .breadcrumb span {
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-color);
+            opacity: 0.4;
+            margin: 0 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .game-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 600px;
+            border: 4px solid var(--primary-color);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .game-frame {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="white" opacity="0.2"/></svg>') repeat;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.1; }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .feature-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .strategy-section {
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+            padding: 3rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 4px solid var(--primary-color);
+            position: relative;
+        }
+
+        .strategy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="10" fill="%23FF0F7B" opacity="0.05"/></svg>') repeat;
+            z-index: -1;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin-top: 3rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="10" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: var(--card-bg);
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer .container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        .game-notice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            height: 100%;
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+            border-radius: 15px;
+        }
+
+        .notice-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .button-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Hide iframe */
+        .game-frame {
+            display: none;
+        }
+
+        /* Remove notice styles */
+        .game-notice,
+        .notice-icon,
+        .play-button,
+        .button-icon {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="games.html">Games</a>
+            <span class="breadcrumb-separator">›</span>
+            <span>Squid Game Season 2</span>
+        </div>
+    </div>
+
+    <main class="container">
+        <div id="game" class="game-container">
+            <iframe src="https://html5.gamedistribution.com/063df6dc6ed14ff49b1030bbca24b373" 
+                    class="game-frame" 
+                    title="Squid Game Season 2"
+                    frameborder="0"
+                    scrolling="no"
+                    sandbox="allow-scripts allow-same-origin"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <style>
+            .game-frame {
+                display: block !important;
+                margin-bottom: -100px !important;
+                height: calc(100% + 100px) !important;
+            }
+
+            /* Block ads */
+            iframe[src*="googleads"],
+            iframe[src*="doubleclick"],
+            div[id*="google_ads"],
+            div[id*="banner"],
+            div[class*="banner"],
+            div[id*="ads"],
+            div[class*="ads"] {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+
+            /* Add gradient overlay to hide bottom banner */
+            .game-container::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100px;
+                background: linear-gradient(to bottom, transparent, var(--card-bg));
+                pointer-events: none;
+            }
+        </style>
+
+        <header>
+            <div class="container">
+                <h1>Squid Game Season 2: The Ultimate Survival Challenge</h1>
+                <p>Experience the next evolution of survival gaming with enhanced challenges and intense competitions</p>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10M+</div>
+                <p>Active Players</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <p>New Games</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">456</div>
+                <p>Players Per Round</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">45.6B</div>
+                <p>Prize Pool</p>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>New Features in Squid Game Season 2</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Enhanced Gameplay</h3>
+                    <p>Experience Squid Game Season 2 with improved mechanics, smoother controls, and more intense challenges that test your survival skills to the limit.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>New Mini-Games</h3>
+                    <p>Discover six brand new mini-games in Squid Game Season 2, each with unique mechanics and strategies required to survive and advance to the next round.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multiplayer Mode</h3>
+                    <p>Compete against players worldwide in Squid Game Season 2's multiplayer mode. Form alliances, outsmart opponents, and be the last one standing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="strategy-section">
+            <h2>Survival Strategies</h2>
+            <p>Master these essential tactics to increase your chances of survival in Squid Game Season 2:</p>
+            <ul>
+                <li>Study each game's patterns and timing</li>
+                <li>Form strategic alliances with other players</li>
+                <li>Manage your stamina throughout each round</li>
+                <li>Learn from each elimination to improve your strategy</li>
+                <li>Stay alert for hidden advantages and power-ups</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Game Modes in Squid Game Season 2</h2>
+            <p>Explore various game modes that offer unique challenges and experiences in the latest season of this intense survival game.</p>
+            
+            <h3>Single Player Campaign</h3>
+            <p>Take on the challenge solo in Squid Game Season 2's story mode. Progress through increasingly difficult levels while uncovering the dark secrets behind the games.</p>
+
+            <h3>Battle Royale Mode</h3>
+            <p>Compete in massive multiplayer battles where only one player can emerge victorious. Use your skills and strategy to outmaneuver opponents in this intense game mode.</p>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Test Your Survival Skills?</h2>
+            <p>Join millions of players in Squid Game Season 2</p>
+            <a href="#game" class="cta-button" onclick="scrollToGame(event)">Play Now!</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Squid Game Season 2. All rights reserved.</p>
+            <div class="links">
+                <a href="home.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <a href="terms.html">Terms</a>
+                <a href="games.html">Games</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToGame(e) {
+            e.preventDefault();
+            const gameSection = document.getElementById('game');
+            gameSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html> 
