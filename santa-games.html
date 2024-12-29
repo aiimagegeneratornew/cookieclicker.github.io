@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Santa Games - The magical Christmas adventure featuring Santa's journey. Join Santa in delivering gifts, solving puzzles, and spreading holiday cheer in this festive gaming experience.">
+    <title>Santa Games - Magical Christmas Adventure | Play Holiday Games Online</title>
+    
+    <!-- Resource Hints -->
+    
+
+    <style>
+        :root {
+            --primary-color: #D42426;
+            --secondary-color: #1B5E20;
+            --accent-color: #FFD700;
+            --text-color: #2C1810;
+            --bg-color: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --hover-color: #B71C1C;
+            --snow-color: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="%23D42426" opacity="0.1"/></svg>');
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: var(--card-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Breadcrumb Styles */
+        .breadcrumb {
+            background: var(--bg-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .breadcrumb .container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--hover-color);
+        }
+
+        .breadcrumb span {
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-color);
+            opacity: 0.4;
+            margin: 0 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .game-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 600px;
+            border: 4px solid var(--primary-color);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .game-frame {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-color);
+        }
+
+        /* Remove unused styles */
+        .loading-container,
+        .loading-spinner,
+        .loading-progress,
+        .progress-bar,
+        .progress-text,
+        .game-notice,
+        .notice-icon,
+        .play-button,
+        .button-icon {
+            display: none;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="white" opacity="0.2"/></svg>') repeat;
+            animation: snowfall 10s linear infinite;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid var(--primary-color);
+        }
+
+        .strategy-section {
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+            padding: 3rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 4px solid var(--primary-color);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+            color: white;
+            margin-top: 3rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="white" opacity="0.2"/></svg>') repeat;
+            animation: snowfall 10s linear infinite;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: var(--card-bg);
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-frame {
+                height: 500px;
+            }
+
+            footer .container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        .loading-progress {
+            margin-top: 1rem;
+            width: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 3px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 7px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .game-frame {
+            background: var(--bg-color);
+        }
+
+        .game-notice {
+            display: block;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+            border: 2px dashed var(--primary-color);
+            border-radius: 15px;
+        }
+
+        .notice-icon {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+        }
+
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .button-icon {
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="games.html">Games</a>
+            <span class="breadcrumb-separator">›</span>
+            <span>Santa Games</span>
+        </div>
+    </div>
+
+    <main class="container">
+        <div id="game" class="game-container">
+            <iframe src="https://www.miniplay.com/embed/minecraft-builder" 
+                    class="game-frame" 
+                    title="Santa Games Adventure"
+                    frameborder="0"
+                    scrolling="no"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <header>
+            <div class="container">
+                <h1>Santa Games: Magical Christmas Adventure</h1>
+                <p>Join Santa on an epic holiday journey filled with fun and festive challenges</p>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5M+</div>
+                <p>Happy Players</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <p>Festive Levels</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <p>Holiday Challenges</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <p>Christmas Joy</p>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>Experience the Magic of Christmas</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Santa's Adventure</h3>
+                    <p>Guide Santa through magical winter landscapes, delivering presents and spreading holiday cheer in this enchanting Christmas adventure game.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Holiday Challenges</h3>
+                    <p>Test your skills with festive puzzles and challenges. Help Santa navigate through chimneys, avoid obstacles, and collect special Christmas bonuses.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Christmas Rewards</h3>
+                    <p>Unlock special holiday achievements and collect festive rewards as you progress through Santa's magical journey around the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="strategy-section">
+            <h2>Santa's Gaming Tips</h2>
+            <p>Master these essential strategies to help Santa deliver presents efficiently:</p>
+            <ul>
+                <li>Time your jumps carefully to avoid winter obstacles</li>
+                <li>Collect power-ups to boost Santa's abilities</li>
+                <li>Watch for special holiday bonuses along the way</li>
+                <li>Plan your route to reach all the chimneys</li>
+                <li>Use special Christmas magic at the right moment</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Holiday Game Features</h2>
+            <p>Santa Games offers a magical Christmas experience for players of all ages. Join Santa in his quest to deliver presents and spread holiday cheer around the world.</p>
+            
+            <h3>Festive Gameplay</h3>
+            <p>Experience the joy of Christmas with beautiful winter landscapes, cheerful holiday music, and magical animations that bring the spirit of the season to life.</p>
+
+            <h3>Special Powers</h3>
+            <p>Discover and use Santa's special abilities to overcome challenges, from magical flight boosts to special gift-giving powers that help spread Christmas joy.</p>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready for a Holiday Adventure?</h2>
+            <p>Join millions of players in this magical Christmas journey</p>
+            <a href="#game" class="cta-button" onclick="scrollToGame(event)">Start Playing Now!</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Santa Games. All rights reserved.</p>
+            <div class="links">
+                <a href="home.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <a href="terms.html">Terms</a>
+                <a href="games.html">Games</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToGame(e) {
+            e.preventDefault();
+            const gameSection = document.getElementById('game');
+            gameSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html> 
