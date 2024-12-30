@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Is My Cat Game - Ultimate Hidden Cat Finding Adventure 2024</title>
+    <meta name="description" content="Play Where Is My Cat Game, the ultimate hidden object adventure! Find your lost cat in beautifully designed levels. Perfect blend of puzzle solving and cat finding fun.">
+    <meta name="keywords" content="where is my cat game, cat finding puzzle game, hidden cat adventure, find my cat game online, cat search puzzle game, cat hide and seek game">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Where Is My Cat Game - Ultimate Hidden Cat Finding Adventure">
+    <meta property="og:description" content="Embark on an exciting journey to find your lost cat in this beautifully crafted hidden object game. Perfect for cat lovers and puzzle enthusiasts!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://yourdomain.com/images/where-is-my-cat-preview.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b66ff;
+            --secondary-color: #8787ff;
+            --accent-color: #a8a8ff;
+            --background-color: #f5f5ff;
+            --card-bg: #ffffff;
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --shadow-color: rgba(107, 102, 255, 0.12);
+            --gradient-start: #6b66ff;
+            --gradient-end: #8787ff;
+            --border-color: rgba(107, 102, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+            background-image: 
+                radial-gradient(at 40% 20%, rgba(135, 135, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(107, 102, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(168, 168, 255, 0.08) 0px, transparent 50%);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .game-container {
+            background: #000000;
+            border-radius: 24px;
+            padding: 0;
+            margin: 1rem auto;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .game-info-overlay {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            color: #fff;
+            font-size: 14px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 12px 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        .game-info-overlay img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .game-actions {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 12px 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .like-count {
+            color: #4ade80;
+        }
+
+        .dislike-count {
+            color: #f87171;
+        }
+
+        .report-btn {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 20px;
+        }
+
+        .game-info {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            padding: 2rem;
+            border-radius: 24px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 12px 36px var(--shadow-color);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 36px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.8rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .gameplay-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .gameplay-card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 36px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .gameplay-card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 5rem 0;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 90vw;
+            }
+            .game-container {
+                max-width: 90vw;
+            }
+            .game-info {
+                max-width: 90vw;
+                padding: 2rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gameplay-section {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+            .game-info {
+                padding: 1.5rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.75rem;
+            }
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <iframe src="https://plays.org/game/where-is-my-cat/" class="game-frame" title="Play Where Is My Cat Game" allow="autoplay; fullscreen" scrolling="no" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" msallowfullscreen="true" allowfullscreen="true"></iframe>
+
+        </div>
+        <div class="game-info">
+            <h1>Where Is My Cat Game - The Ultimate Hidden Object Adventure</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">75+</div>
+                    <div class="stat-label">Unique Levels</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Hidden Cats</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Player Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2M+</div>
+                    <div class="stat-label">Global Players</div>
+                </div>
+            </div>
+
+            <h2>Embark on an Epic Cat Finding Adventure</h2>
+            <p>Welcome to Where Is My Cat Game, an enchanting hidden object adventure that combines the thrill of puzzle-solving with the charm of our feline friends. In this immersive cat finding game, you'll explore intricately designed environments where your beloved cat might be hiding. Each level presents unique challenges and clever hiding spots that will test your observation skills.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Master Detective Challenge</h3>
+                    <p>Put your observation skills to the ultimate test in Where Is My Cat Game as you search for cleverly concealed felines. Each level of this cat finding adventure introduces new hiding techniques and increasingly challenging puzzles that will keep you engaged for hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Stunning Visual Experience</h3>
+                    <p>Immerse yourself in beautifully crafted environments where your cat might be lurking. Our Where Is My Cat Game features hand-drawn scenes with meticulous attention to detail, creating the perfect backdrop for your hidden object adventure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Achievement System</h3>
+                    <p>Track your progress and earn special achievements as you master the art of finding hidden cats. Compete with players worldwide and showcase your cat finding prowess in this engaging puzzle adventure game.</p>
+                </div>
+            </div>
+
+            <h2>Game Features That Set Us Apart</h2>
+            <div class="gameplay-section">
+                <div class="gameplay-card">
+                    <h3>Interactive Environments</h3>
+                    <p>Where Is My Cat Game offers fully interactive scenes where you can click, drag, and investigate various objects. Each environment in our cat finding game is designed to provide multiple layers of interaction, making the search more engaging and rewarding.</p>
+                </div>
+                <div class="gameplay-card">
+                    <h3>Smart Hint System</h3>
+                    <p>Stuck in your quest to find your hidden cat? Our intelligent hint system provides subtle clues without spoiling the challenge. This feature ensures that Where Is My Cat Game remains enjoyable for players of all skill levels.</p>
+                </div>
+                <div class="gameplay-card">
+                    <h3>Progressive Difficulty</h3>
+                    <p>Experience a perfectly balanced progression system in Where Is My Cat Game. As you advance through the levels, the challenge gradually increases, introducing new hiding mechanics and more complex environments to explore.</p>
+                </div>
+                <div class="gameplay-card">
+                    <h3>Regular Updates</h3>
+                    <p>Our commitment to providing fresh content means regular updates to Where Is My Cat Game. New levels, challenges, and hidden cats are added frequently, ensuring there's always something new to discover in your cat finding adventure.</p>
+                </div>
+            </div>
+
+            <h2>Why Players Love Where Is My Cat Game</h2>
+            <p>Our cat finding game has captured the hearts of millions with its perfect blend of challenge and charm. Players particularly enjoy the satisfaction of finally spotting their elusive feline friend after carefully searching through each beautifully designed level. The game's intuitive controls and progressive difficulty make it accessible to casual players while providing enough depth for dedicated puzzle enthusiasts.</p>
+
+            <p>The Where Is My Cat Game community continues to grow as players share their experiences, strategies, and favorite hiding spots. Our regular updates and special events keep the gameplay fresh and exciting, ensuring there's always a new challenge waiting for both newcomers and veteran players.</p>
+
+            <h2>Expert Tips for Finding Your Cat</h2>
+            <p>To excel in Where Is My Cat Game, develop a methodical approach to searching each scene. Look for subtle clues like displaced objects or unusual shadows that might indicate your cat's presence. Remember that cats in our game love to hide in unexpected places, so think outside the box and use the environment's interactive elements to your advantage. When stuck, don't hesitate to use the hint system - it's designed to enhance your cat finding experience without diminishing the satisfaction of discovery.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/about.html">About</a>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-use.html">Terms of Use</a>
+                <a href="/sitemap.html">Sitemap</a>
+                <a href="/new-game.html">New Game</a>
+            </div>
+            <div class="copyright">
+                © 2024 Where Is My Cat Game - Free Online Cat Finding Adventure
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
